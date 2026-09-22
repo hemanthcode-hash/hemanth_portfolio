@@ -1,4 +1,53 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const themeButton = document.querySelector('.theme-toggle');
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  themeButton.querySelector('span').textContent = theme === 'dark' ? '☀' : '☾';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0c1118' : '#f3f7fb';
+}
+let savedTheme = 'light';
+try { savedTheme = localStorage.getItem('hemanth-theme') || 'light'; } catch {}
+setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+themeButton.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  setTheme(next);
+  try { localStorage.setItem('hemanth-theme', next); } catch {}
+});
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('#navigation');
+function closeMenu() {
+  navigation.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open navigation');
+  menuButton.textContent = '☰';
+}
+menuButton.addEventListener('click', () => {
+  const open = navigation.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  menuButton.textContent = open ? '×' : '☰';
+});
+navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && navigation.classList.contains('open')) { closeMenu(); menuButton.focus(); }
+});
+document.addEventListener('click', event => {
+  if (!navigation.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+});
+let toastTimeout;
+document.querySelectorAll('[data-copy-email]').forEach(button => button.addEventListener('click', async () => {
+  const toast = document.querySelector('#toast');
+  try {
+    await navigator.clipboard.writeText('pelluruhemanth@gmail.com');
+    toast.textContent = 'Email address copied!';
+  } catch {
+    toast.textContent = 'Email: pelluruhemanth@gmail.com';
+  }
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+}));
 if ('IntersectionObserver' in window && !reducedMotion) {
   document.documentElement.classList.add('motion');
   const reveals = new IntersectionObserver(entries => entries.forEach(entry => {
