@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Project & Services Brochure - Hemanth Pelluru. College Main & Mini Projects, Freelance Enterprise Web Development.">
+    <title>Services &amp; Project Brochure &mdash; Hemanth Pelluru</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Google Fonts: Space Grotesk + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles & Scripts -->
+    <link rel="stylesheet" href="theme.css">
+    <script src="script.js" defer></script>
+
+    <style>
+        /* Brochure Custom Styling */
+        .brochure-body {
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .brochure-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+
+        [data-theme="light"] .brochure-nav {
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .brochure-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .brochure-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .brochure-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .brochure-container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero Banner */
+        .brochure-hero {
+            text-align: center;
+            padding: 40px 24px 48px;
+            background: linear-gradient(180deg, var(--surface) 0%, rgba(99, 102, 241, 0.04) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .brochure-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 450px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .brochure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .brochure-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        .brochure-title span {
+            background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brochure-subtitle {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 760px;
+            margin: 0 auto 28px;
+        }
+
+        .hero-highlights-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .hero-highlight-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface);
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+        }
+
+        /* Two Major Pillars */
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+
+        .offering-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+            position: relative;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .offering-badge-top {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            align-self: flex-start;
+        }
+
+        .offering-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .offering-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .offering-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.25;
+        }
+
+        .offering-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .offering-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--muted);
+            margin: 18px 0 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--text-secondary);
+        }
+
+        .feature-item strong {
+            color: var(--text);
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .bundle-box {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px dashed var(--accent);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: auto;
+        }
+
+        .bundle-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bundle-items {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Tech Capability Matrix */
+        .tech-showcase-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 36px 32px;
+            margin-bottom: 40px;
+        }
+
+        .section-intro-head {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-intro-head h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .section-intro-head p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .tech-capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tech-cat-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+        }
+
+        .tech-cat-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-pill {
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Process Steps */
+        .process-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 36px 32px;
+            margin-bottom: 40px;
+        }
+
+        .process-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .process-step-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 18px;
+            position: relative;
+        }
+
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.6;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Contact & Hire CTA */
+        .brochure-cta-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-xl);
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .brochure-cta-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .brochure-cta-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+
+        .brochure-contact-btns {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background: #25d366 !important;
+            color: #ffffff !important;
+            border-color: #25d366 !important;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3) !important;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a !important;
+            transform: translateY(-2px);
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .brochure-nav,
+            .brochure-nav-actions,
+            .btn,
+            .skip-link,
+            .scroll-progress-bar {
+                display: none !important;
+            }
+            .brochure-container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .brochure-hero,
+            .offering-card,
+            .tech-showcase-section,
+            .process-section,
+            .brochure-cta-card,
+            .tech-cat-box,
+            .process-step-card {
+                background: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #cccccc !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+            .brochure-title span {
+                -webkit-text-fill-color: #4f46e5 !important;
+                color: #4f46e5 !important;
+            }
+            .feature-item,
+            .step-desc,
+            .brochure-subtitle,
+            .bundle-items {
+                color: #333333 !important;
+            }
+            .tech-pill {
+                background: #f3f4f6 !important;
+                color: #111827 !important;
+                border: 1px solid #d1d5db !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-capabilities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .process-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .brochure-container {
+                padding: 24px 16px;
+            }
+            .tech-capabilities-grid,
+            .process-steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .brochure-hero {
+                padding: 28px 16px;
+            }
+            .offering-card {
+                padding: 24px 18px;
+            }
+            .brochure-title {
+                font-size: 28px;
+            }
+            .brochure-contact-btns .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="brochure-body">
+
+    <!-- BROCHURE TOP BAR -->
+    <nav class="brochure-nav">
+        <div class="container brochure-nav-inner">
+            <a href="index.html" class="brochure-brand">
+                <span>⚡</span> Hemanth Pelluru
+            </a>
+            
+            <div class="brochure-nav-actions">
+                <a href="index.html" class="btn btn-secondary btn-sm" style="padding: 8px 16px; font-size: 13px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Back to Portfolio
+                </a>
+                <a href="assets/Hemanth-Pelluru-Services-Brochure.pdf" download="Hemanth-Pelluru-Services-Brochure.pdf" class="btn btn-primary btn-sm" style="padding: 8px 16px; font-size: 13px;" title="Download PDF Brochure">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                </a>
+                <template>
+                    PDF
+                </button>
+                </template>
+                <a href="https://wa.me/919703637349?text=Hi%20Hemanth,%20I%20am%20interested%20in%20your%20Project%20Development%20Services!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="padding: 8px 16px; font-size: 13px;">
+                    💬 WhatsApp Chat
+                </a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" style="width: 36px; height: 36px; border-radius: 50%;">
+                    <span class="icon-moon">☾</span>
+                    <span class="icon-sun">☀</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="brochure-container">
+        <!-- HERO BANNER -->
+        <header class="brochure-hero">
+            <span class="brochure-badge">SERVICES &amp; SOLUTIONS BROCHURE</span>
+            <h1 class="brochure-title">
+                What I Can <span>Build &amp; Deliver</span> For You
+            </h1>
+            <p class="brochure-subtitle">
+                Software Engineer with <strong>3.5+ years of enterprise experience</strong>. Whether you need an academic capstone project with complete documentation or a production-grade web application for your business, I deliver high-quality, working software on time.
+            </p>
+            <div class="hero-highlights-row">
+                <span class="hero-highlight-pill">✓ 100% Working Code Guarantee</span>
+                <span class="hero-highlight-pill">✓ Full Documentation &amp; PPT</span>
+                <span class="hero-highlight-pill">✓ Direct Execution &amp; Viva Support</span>
+                <span class="hero-highlight-pill">✓ Enterprise-Grade Architecture</span>
+            </div>
+        </header>
+
+        <!-- TWO MAIN CATEGORIES GRID -->
+        <section class="offerings-grid">
+            <!-- PILLAR 1: COLLEGE PROJECTS -->
+            <div class="offering-card">
+                <span class="offering-badge-top">ACADEMIC EXCELLENCE</span>
+                <div class="offering-header">
+                    <div class="offering-icon">🎓</div>
+                    <div>
+                        <h2 class="offering-title">College Projects</h2>
+                        <span style="font-size: 13px; color: var(--accent); font-weight: 600;">Main Projects &amp; Mini Projects</span>
+                    </div>
+                </div>
+                <p class="offering-tagline">
+                    End-to-end academic project support for B.Tech, M.Tech, MCA, and BCA computer science and engineering students with 100% submission-ready deliverables.
+                </p>
+
+                <div class="offering-section-title">What I Build For College:</div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Final Year Main Projects:</strong> Advanced full-stack applications, IEEE base paper implementations, microservices systems, and AI-enabled platforms.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Semester Mini Projects:</strong> Focused, modular applications built in 2–4 days with clean UI, REST APIs, and database integration.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Popular Domains:</strong> Full-Stack Web (Spring Boot + React, MERN, Python/Django), Cloud &amp; Microservices, Cyber Security Tools, Employee Monitoring, and Management Portals.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Clean Source Code:</strong> Production-style repository structure with zero spaghetti code, making it easy to explain to professors.</div>
+                    </li>
+                </ul>
+
+                <div class="bundle-box">
+                    <div class="bundle-title">📦 Complete College Submission Package Includes:</div>
+                    <p class="bundle-items">
+                        • Complete Source Code &amp; Database Scripts (.sql)<br>
+                        • Project Report in IEEE / College Format (SRS, Diagrams, Architecture)<br>
+                        • Presentation Slide Deck (PPT) for Review / Viva<br>
+                        • Step-by-Step Local Setup &amp; Execution Guide (Windows/Mac/Linux)<br>
+                        • 1-on-1 Code Walkthrough &amp; Viva Q&amp;A Preparation
+                    </p>
+                </div>
+            </div>
+
+            <!-- PILLAR 2: FREELANCE & ENTERPRISE -->
+            <div class="offering-card">
+                <span class="offering-badge-top">BUSINESS &amp; CLIENT SOLUTIONS</span>
+                <div class="offering-header">
+                    <div class="offering-icon">🚀</div>
+                    <div>
+                        <h2 class="offering-title">Freelancing &amp; Web Apps</h2>
+                        <span style="font-size: 13px; color: var(--accent); font-weight: 600;">Custom Web Development &amp; SaaS MVPs</span>
+                    </div>
+                </div>
+                <p class="offering-tagline">
+                    Full-lifecycle software engineering for startups, businesses, and independent clients looking to build fast, robust, and scalable digital products.
+                </p>
+
+                <div class="offering-section-title">What I Build For Clients:</div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Custom Enterprise Web Applications:</strong> High-performance backend architectures with scalable RESTful microservices and PostgreSQL/MySQL databases.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>SaaS Platforms &amp; MVPs:</strong> Rapid prototypes and Minimum Viable Products built to launch quickly with enterprise-grade quality.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Modern Frontends &amp; Admin Dashboards:</strong> Pixel-perfect responsive web apps built using React, TypeScript, and Mantine with real-time charts and data tables.</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Authentication &amp; Payment Integrations:</strong> Secure user authentication (JWT, OAuth2, Keycloak) and payment gateway integration (Razorpay, Stripe).</div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✔</span>
+                        <div><strong>Cloud Deployment &amp; DevOps:</strong> Docker containerization, AWS cloud hosting (EC2, ECS, S3, RDS), and automated CI/CD pipelines.</div>
+                    </li>
+                </ul>
+
+                <div class="bundle-box">
+                    <div class="bundle-title">💼 Client Assurance &amp; Delivery Standards:</div>
+                    <p class="bundle-items">
+                        • Strict adherence to project timelines and milestones<br>
+                        • Clean, well-documented, maintainable codebase<br>
+                        • Post-delivery deployment and bug-fix support<br>
+                        • Transparent communication via WhatsApp / Google Meet / Email
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY CAPABILITIES SHOWCASE -->
+        <section class="tech-showcase-section">
+            <div class="section-intro-head">
+                <span class="brochure-badge">CORE CAPABILITIES</span>
+                <h3>Technology Stack I Work With</h3>
+                <p>Enterprise technologies selected for reliability, speed, and long-term scalability.</p>
+            </div>
+
+            <div class="tech-capabilities-grid">
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">♨ Backend Engineering</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">Spring Boot</span>
+                        <span class="tech-pill">Spring MVC</span>
+                        <span class="tech-pill">Hibernate / JPA</span>
+                        <span class="tech-pill">REST APIs</span>
+                        <span class="tech-pill">Microservices</span>
+                        <span class="tech-pill">Gradle &amp; Maven</span>
+                    </div>
+                </div>
+
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">⚛ Frontend Development</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">React.js</span>
+                        <span class="tech-pill">TypeScript</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Mantine UI</span>
+                        <span class="tech-pill">HTML5 &amp; CSS3</span>
+                        <span class="tech-pill">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">🐘 Data &amp; Streaming</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">PostgreSQL</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">Apache Kafka</span>
+                        <span class="tech-pill">Redis Cache</span>
+                        <span class="tech-pill">SQL Optimization</span>
+                    </div>
+                </div>
+
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">🔒 Security &amp; Payments</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">Spring Security</span>
+                        <span class="tech-pill">JWT Tokens</span>
+                        <span class="tech-pill">OAuth2</span>
+                        <span class="tech-pill">Keycloak</span>
+                        <span class="tech-pill">Razorpay</span>
+                        <span class="tech-pill">Stripe</span>
+                    </div>
+                </div>
+
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">☁ Cloud &amp; DevOps</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">AWS Services</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">Jenkins CI/CD</span>
+                        <span class="tech-pill">Git &amp; GitHub</span>
+                        <span class="tech-pill">Linux Servers</span>
+                    </div>
+                </div>
+
+                <div class="tech-cat-box">
+                    <div class="tech-cat-title">🤖 AI-Assisted Speed</div>
+                    <div class="tech-pill-list">
+                        <span class="tech-pill">GitHub Copilot</span>
+                        <span class="tech-pill">Cursor</span>
+                        <span class="tech-pill">Rapid Scaffolding</span>
+                        <span class="tech-pill">Test Generation</span>
+                        <span class="tech-pill">Fast Turnaround</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4-STEP PROCESS -->
+        <section class="process-section">
+            <div class="section-intro-head">
+                <span class="brochure-badge">HOW IT WORKS</span>
+                <h3>Simple 4-Step Project Delivery</h3>
+                <p>Smooth, transparent collaboration from concept to deployment.</p>
+            </div>
+
+            <div class="process-steps-grid">
+                <div class="process-step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-title">Scope &amp; Planning</div>
+                    <p class="step-desc">We discuss your project requirements, domain, deadlines, tech stack, and deliverable expectations.</p>
+                </div>
+
+                <div class="process-step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-title">Rapid Build</div>
+                    <p class="step-desc">Clean backend, UI, and database development with regular progress updates and demo milestones.</p>
+                </div>
+
+                <div class="process-step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-title">Demo &amp; Testing</div>
+                    <p class="step-desc">Live review of the working application. Fine-tuning, adjustments, and edge-case testing.</p>
+                </div>
+
+                <div class="process-step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-title">Delivery &amp; Support</div>
+                    <p class="step-desc">Full handover of source code, documentation/PPT, deployment, and 1-on-1 viva/execution support.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & BOOKING CTA -->
+        <section class="brochure-cta-card">
+            <h3>Ready to Build Your Project?</h3>
+            <p>
+                Need a college main/mini project with complete documentation, or looking for a reliable freelance developer for your business? Let's connect directly!
+            </p>
+            <div class="brochure-contact-btns">
+                <a href="https://wa.me/919703637349?text=Hi%20Hemanth,%20I%20am%20interested%20in%20your%20Project%20Development%20Services!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                    💬 Message on WhatsApp (+91 97036 37349)
+                </a>
+                <a href="tel:+919703637349" class="btn btn-primary">
+                    📞 Call: +91 97036 37349
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pelluruhemanth@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    ✉ Email: pelluruhemanth@gmail.com
+                </a>
+            </div>
+            <div style="margin-top: 24px; font-size: 13.5px; color: var(--text-secondary);">
+                Available for Remote Projects Worldwide &bull; Student &amp; Client Friendly
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
