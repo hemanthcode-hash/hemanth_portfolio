@@ -1347,8 +1347,17 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
 }
 
 .metrics-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+}
+
+.metrics-grid-old {
+}
+
+.metrics-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
 }
 
@@ -1499,7 +1508,7 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
    ══════════════════════════════════════ */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
@@ -1914,7 +1923,7 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
 
 .contact-info-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     margin-top: 40px;
 }
