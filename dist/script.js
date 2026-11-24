@@ -6,7 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- 0. Constants & State ---
-    const EMAIL = 'pelluruhemanth@gmail.com';
+    const EMAIL = 'hemanth.letsbuildtechnology@gmail.com';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     // --- 1. Theme Toggle ---
